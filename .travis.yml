@@ -10,6 +10,10 @@ before_script:
   - ./cc-test-reporter before-build
 script:
   - mvn test
+  - mvn jacoco:report
 after_success:
-  - mvn clean test jacoco:report coveralls:report
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - mvn coveralls:report
+  # workaround, see https://github.com/codeclimate/test-reporter/issues/259
+  - cp "target/site/jacoco/jacoco.xml" "src/main/java/jacoco.xml"
+  - cd src/main/java/
+  - ../../../cc-test-reporter after-build -t jacoco --exit-code $TRAVIS_TEST_RESULT
