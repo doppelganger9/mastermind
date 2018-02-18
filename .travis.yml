@@ -4,7 +4,12 @@ jdk:
   - openjdk8
 install:
   - mvn test-compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
   - mvn test
 after_success:
   - mvn clean test jacoco:report coveralls:report
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
