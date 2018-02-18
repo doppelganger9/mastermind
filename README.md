@@ -1,4 +1,5 @@
-# Mastermind
+# Mastermind [![Build Status](https://travis-ci.org/doppelganger9/mastermind.svg?branch=master)](https://travis-ci.org/doppelganger9/mastermind) [![Coverage Status](https://coveralls.io/repos/github/doppelganger9/mastermind/badge.svg?branch=master)](https://coveralls.io/github/doppelganger9/mastermind?branch=master)
+
 
 This project aims to replicate the classic board game [Mastermind](https://en.wikipedia.org/wiki/Mastermind_(board_game))
 Sample code provided in Java language.
