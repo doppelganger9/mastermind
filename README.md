@@ -1,6 +1,5 @@
-# Mastermind [![Build Status](https://travis-ci.org/doppelganger9/mastermind.svg?branch=master)](https://travis-ci.org/doppelganger9/mastermind) [![Coverage Status](https://coveralls.io/repos/github/doppelganger9/mastermind/badge.svg?branch=master)](https://coveralls.io/github/doppelganger9/mastermind?branch=master) [![BCH compliance](https://bettercodehub.com/edge/badge/doppelganger9/mastermind?branch=master)](https://bettercodehub.com/) [![Maintainability](https://api.codeclimate.com/v1/badges/85d4fe610960fbf03604/maintainability)](https://codeclimate.com/github/doppelganger9/mastermind/maintainability) [![Known Vulnerabilities](https://snyk.io/test/github/doppelganger9/mastermind/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/doppelganger9/mastermind?targetFile=pom.xml)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdoppelganger9%2Fmastermind.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdoppelganger9%2Fmastermind?ref=badge_shield)
-
+# Mastermind 
+[![Build Status](https://travis-ci.org/doppelganger9/mastermind.svg?branch=master)](https://travis-ci.org/doppelganger9/mastermind) [![Coverage Status](https://coveralls.io/repos/github/doppelganger9/mastermind/badge.svg?branch=master)](https://coveralls.io/github/doppelganger9/mastermind?branch=master) [![BCH compliance](https://bettercodehub.com/edge/badge/doppelganger9/mastermind?branch=master)](https://bettercodehub.com/) [![Maintainability](https://api.codeclimate.com/v1/badges/85d4fe610960fbf03604/maintainability)](https://codeclimate.com/github/doppelganger9/mastermind/maintainability) [![Known Vulnerabilities](https://snyk.io/test/github/doppelganger9/mastermind/badge.svg?targetFile=pom.xml)](https://snyk.io/test/github/doppelganger9/mastermind?targetFile=pom.xml) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0ea3c5fe89d14ce380a2039486add9d7)](https://www.codacy.com/app/doppelganger9/mastermind?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=doppelganger9/mastermind&amp;utm_campaign=Badge_Grade) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdoppelganger9%2Fmastermind.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdoppelganger9%2Fmastermind?ref=badge_shield)
 
 This project aims to replicate the classic board game [Mastermind](https://en.wikipedia.org/wiki/Mastermind_(board_game))
 Sample code provided in Java language.
@@ -47,6 +46,5 @@ In the future I will add auto-play to try the **Five-guess algorithm** and the *
 ## License
 
 MIT see [LICENSE](LICENSE).
-
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdoppelganger9%2Fmastermind.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdoppelganger9%2Fmastermind?ref=badge_large)
