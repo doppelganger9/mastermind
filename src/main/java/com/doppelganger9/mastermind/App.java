@@ -40,6 +40,10 @@ public class App {
                     System.out.println("Exit!");
                     System.exit(0);
                 }
+                if (input == null || input.length() < 4) {
+                    System.out.print("Please enter a combination of 4 colors in [R,B,V,J,O,N] or 'q' to quit, you entered : '" + input + "'\n");
+                    continue;
+                }
 
                 turns.add(t);
 
