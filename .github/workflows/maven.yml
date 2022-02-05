@@ -24,24 +24,11 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn --batch-mode --errors --fail-at-end --show-version package --file pom.xml
-    - name: Create JaCoCo coverage report
-      run: mvn jacoco:report
-
-    - name: Setup .NET Core # Required to execute ReportGenerator
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.101
-    - name: ReportGenerator to convert JaCoCo to LCOV
-      uses: danielpalme/ReportGenerator-GitHub-Action@5.0.3
-      with:
-        reports: 'target/jacoco.exec'
-        targetdir: 'coverage'
-        reporttypes: 'lcov' # The output formats and scope (separated by semicolon) Values: Badges, Clover, Cobertura, CsvSummary, Html, HtmlChart, HtmlInline, HtmlInline_AzurePipelines, HtmlInline_AzurePipelines_Dark, HtmlSummary, JsonSummary, Latex, LatexSummary, lcov, MarkdownSummary, MHtml, PngChart, SonarQube, TeamCitySummary, TextSummary, Xml, XmlSummary
-      
-    - name: Coveralls GitHub Action
-      uses: coverallsapp/github-action@1.1.3
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create JaCoCo coverage report sent to Coveralls
+      run: mvn jacoco:report coveralls:report
+      env:
+        COVERALLS_REPO_SECRET: ${{ secrets.COVERALLS_REPO_SECRET }}
+        
 
 
 
