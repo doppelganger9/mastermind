@@ -5,14 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter
+@Setter
 @AllArgsConstructor
 public class Turn {
     public static final Integer MAX_NB_TURNS = 10;
 
-    private @Getter @Setter String userInput;
-    private @Getter @Setter Integer nbCorrect;
-    private @Getter @Setter Integer nbMisplaced;
-    private @Getter @Setter Integer turn;
+    private String userInput;
+    private Integer nbCorrect;
+    private Integer nbMisplaced;
+    private Integer turn;
 
     public String toBoardLineOutput() {
       String cturn = this.turn>=9 ? "" + (this.turn+1) : " " + (this.turn+1);
