@@ -9,7 +9,8 @@ You are the player.
 
 ## How to use
 
-- `mvn install && java -jar target/mastermind-1.0-SNAPSHOT.jar`
+- Prerequisite: Java 21 (or else use old version 1.0)
+- `mvn package && java --enable-preview -jar target/mastermind-1.1-SNAPSHOT.jar`
 - give answers through STDIN + ENTER key to validate.
   Use **R**ed **J**=Yellow, **B**lue, **O**range, **V**=Green, **N**=Black.
 - win 😎 !

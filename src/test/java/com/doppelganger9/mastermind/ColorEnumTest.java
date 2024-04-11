@@ -1,35 +1,43 @@
 package com.doppelganger9.mastermind;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.Test;
+import java.util.stream.Stream;
 
-public class ColorEnumTest {
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-    @Test
-    public void shouldHaveALabel() {
-        assertEquals("Blue", ColorEnum.B.getLabel());
-        assertEquals("Yellow", ColorEnum.J.getLabel());
-        assertEquals("Black", ColorEnum.N.getLabel());
-        assertEquals("Green", ColorEnum.V.getLabel());
-        assertEquals("Red", ColorEnum.R.getLabel());
-        assertEquals("Orange", ColorEnum.O.getLabel());
+class ColorEnumTest {
+
+    private static Stream<Arguments> shouldHaveALabel() {
+        return Stream.of(
+            Arguments.of("Blue", ColorEnum.B),
+            Arguments.of("Yellow", ColorEnum.J),
+            Arguments.of("Black", ColorEnum.N),
+            Arguments.of("Green", ColorEnum.V),
+            Arguments.of("Red", ColorEnum.R),
+            Arguments.of("Orange", ColorEnum.O)
+        );
     }
 
-    @Test
-    public void shouldFindEnumFromEnumName() {
+    @ParameterizedTest
+    @MethodSource
+    void shouldHaveALabel(String colorLabel, ColorEnum colorEnum) {
+        assertEquals(colorLabel, colorEnum.getLabel());
+    }
+
+    @Test void shouldFindEnumFromEnumName() {
         assertEquals(ColorEnum.B, ColorEnum.valueOf("B"));
     }
 
-    @Test
-    public void shouldFindEnumFromEnumLabel() {
+    @Test void shouldFindEnumFromEnumLabel() {
         assertEquals(ColorEnum.B, ColorEnum.fromLabel("Blue"));
     }
 
-    @Test
-    public void shouldFindEnumFromUnknonwEnumLabel() {
+    @Test void shouldFindEnumFromUnknonwEnumLabel() {
         assertNull(ColorEnum.fromLabel("Blert"));
     }
 }

@@ -1,44 +1,63 @@
 package com.doppelganger9.mastermind;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.Test;
+import java.util.stream.Stream;
 
-public class AppTest {
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
+class AppTest {
 
-    @Test public void shouldGenerateSolution() {
+    @Test void shouldGenerateSolution() {
         String s = App.generateRandomSolution();
         assertNotNull(s);
         assertEquals(4, s.length());
     }
 
-    @Test public void shouldCountCorrectAnswers() {
-        assertEquals(0, App.countCorrectPositionsAndColors("RRRRR", "BBBBB"));
-        assertEquals(1, App.countCorrectPositionsAndColors("RRRRR", "BBRBB"));
-        assertEquals(2, App.countCorrectPositionsAndColors("RRRRR", "BBRRB"));
-        assertEquals(3, App.countCorrectPositionsAndColors("RRRRR", "BRRRB"));
-        assertEquals(4, App.countCorrectPositionsAndColors("RRRRR", "RRRRB"));
-        assertEquals(5, App.countCorrectPositionsAndColors("RRRRR", "RRRRR"));
-        assertEquals(1, App.countCorrectPositionsAndColors("RRRRR", "R"));
-        assertEquals(0, App.countCorrectPositionsAndColors("RRRRR", ""));
-        assertEquals(0, App.countCorrectPositionsAndColors("RRRRR", null));
-        assertEquals(0, App.countCorrectPositionsAndColors(null, null));
+    private static Stream<Arguments> correctAnswers() {
+        return Stream.of(
+            Arguments.of(0, "RRRRR", "BBBBB"),
+            Arguments.of(1, "RRRRR", "BBRBB"),
+            Arguments.of(2, "RRRRR", "BBRRB"),
+            Arguments.of(3, "RRRRR", "BRRRB"),
+            Arguments.of(4, "RRRRR", "RRRRB"),
+            Arguments.of(5, "RRRRR", "RRRRR"),
+            Arguments.of(1, "RRRRR", "R"),
+            Arguments.of(0, "RRRRR", ""),
+            Arguments.of(0, "RRRRR", (String) null),
+            Arguments.of(0, (String) null, (String) null)
+        );
     }
 
-    @Test
-    public void shouldCountMisplacedColors() {
-        assertEquals(0, App.countMisplacedColors("RNJOB", "VVVVV"));
-        assertEquals(1, App.countMisplacedColors("RNJOB", "VVRVV"));
-        assertEquals(2, App.countMisplacedColors("RNJOB", "VVRVJ"));
-        assertEquals(3, App.countMisplacedColors("RNJOB", "NVRVJ"));
-        assertEquals(4, App.countMisplacedColors("RNJOB", "NORVJ"));
-        assertEquals(5, App.countMisplacedColors("RNJOB", "NORBJ"));
+    @ParameterizedTest
+    @MethodSource("correctAnswers")
+    void shouldCountCorrectAnswers(int count, String expected, String given) {
+        assertEquals(count, App.countCorrectPositionsAndColors(expected, given));
+    }
 
-        assertEquals(1, App.countMisplacedColors("RRRRR", "R"));
-        assertEquals(0, App.countMisplacedColors("RRRRR", ""));
-        assertEquals(0, App.countMisplacedColors("RRRRR", null));
-        assertEquals(0, App.countMisplacedColors(null, null));
+    private static Stream<Arguments> countMisplacedColorsArgs() {
+        return Stream.of(
+            Arguments.of(0,"RNJOB", "VVVVV"),
+            Arguments.of(1, "RNJOB", "VVRVV"),
+            Arguments.of(2, "RNJOB", "VVRVJ"),
+            Arguments.of(3, "RNJOB", "NVRVJ"),
+            Arguments.of(4, "RNJOB", "NORVJ"),
+            Arguments.of(5, "RNJOB", "NORBJ"),
+
+            Arguments.of(1, "RRRRR", "R"),
+            Arguments.of(0, "RRRRR", ""),
+            Arguments.of(0, "RRRRR", null),
+            Arguments.of(0, null, null)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("countMisplacedColorsArgs")
+    void shouldCountMisplacedColors(int count, String expected, String given) {
+        assertEquals(count, App.countMisplacedColors(expected, given));
     }
 }

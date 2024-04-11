@@ -48,3 +48,6 @@ buildNumber.properties
 *.log
 temp
 tmp
+
+.factorypath
+
