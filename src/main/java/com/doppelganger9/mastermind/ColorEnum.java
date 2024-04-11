@@ -1,11 +1,15 @@
 package com.doppelganger9.mastermind;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Possible Color choices in the game.
  */
-public enum ColorEnum {
+@Getter
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+enum ColorEnum {
     R ("Red"),
     J ("Yellow"),
     B("Blue"),
@@ -13,13 +17,9 @@ public enum ColorEnum {
     V("Green"),
     N("Black");
 
-    private @Getter() String label;
+    private final String label;
 
-    ColorEnum(String label) {
-        this.label = label;
-    }
-
-    public static ColorEnum fromLabel(String label) {
+    static ColorEnum fromLabel(String label) {
         for(ColorEnum c : ColorEnum.values()) {
             if (c.getLabel().equals(label)) {
                 return c;

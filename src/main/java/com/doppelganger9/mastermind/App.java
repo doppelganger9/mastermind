@@ -11,12 +11,12 @@ import java.util.stream.Stream;
 /**
  * Java Mastermind game though STDIN/STDOUT
  */
-public class App {
+class App {
 
     private static String solution;
     private static List<Turn> turns;
 
-    public static void main( String[] args ) {
+    void main() {
 
         turns = new ArrayList<Turn>();
         solution = generateRandomSolution();
@@ -51,7 +51,7 @@ public class App {
                 System.out.println("-----------\n");
 
                 turns.set(n, computeGameAnswer(n, turns));
-                if(t.getNbCorrect().intValue() == solution.length()) {
+                if(t.nbCorrect() == solution.length()) {
                     win = true;
                 }
                 n++;
@@ -80,7 +80,7 @@ public class App {
     protected static String generateRandomSolution() {
         String s = "";
         for (int i = 0; i<4; i++) {
-            int index = new Double(Math.floor((Math.random() * ColorEnum.values().length))).intValue();
+            int index = Double.valueOf(Math.floor((Math.random() * ColorEnum.values().length))).intValue();
             ColorEnum c = ColorEnum.values()[index];
             s += c.name();
         }
@@ -89,11 +89,10 @@ public class App {
 
 	protected static Turn computeGameAnswer(int n, List<Turn> turns) {
         Turn current = turns.get(n);
-
-        current.setNbCorrect(countCorrectPositionsAndColors(solution, current.getUserInput()));
-        current.setNbMisplaced(countMisplacedColors(solution, current.getUserInput()));
-
-        return current;
+        return current.toBuilder() // Turn is a record, so it is immutable, we need to recreate a new one to mutate it.
+            .nbCorrect(countCorrectPositionsAndColors(solution, current.userInput()))
+            .nbMisplaced(countMisplacedColors(solution, current.userInput()))
+            .build();
     }
 
     protected static int countMisplacedColors(String expected, String given) {

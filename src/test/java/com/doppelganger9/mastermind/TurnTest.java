@@ -1,30 +1,26 @@
 package com.doppelganger9.mastermind;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class TurnTest {
+class TurnTest {
 
-    @Test
-    public void shouldHaveGetters() {
+    @Test void shouldHaveGetters() {
         Turn t = new Turn("ABCDE", 1, 2, 3);
 
-        assertEquals(1, t.getNbCorrect().intValue());
-        assertEquals(2, t.getNbMisplaced().intValue());
-        assertEquals(3, t.getTurn().intValue());
-        assertEquals("ABCDE", t.getUserInput());
+        assertEquals(1, t.nbCorrect());
+        assertEquals(2, t.nbMisplaced());
+        assertEquals(3, t.turn());
+        assertEquals("ABCDE", t.userInput());
     }
 
-    @Test
-    public void shouldOutputBoardLine() {
+    @Test void shouldOutputBoardLine() {
         Turn t = new Turn("ABCDE", 1, 2, 3);
         assertEquals("|ABCDE| 1 | 2 | 4/10 |\n", t.toBoardLineOutput());
     }
 
-    @Test
-    public void shouldOutputBoardLineWhenTurnEqualOrOver9() {
+    @Test void shouldOutputBoardLineWhenTurnEqualOrOver9() {
         Turn t = new Turn("ABCDE", 1, 2, 9);
         assertEquals("|ABCDE| 1 | 2 |10/10 |\n", t.toBoardLineOutput());
     }
